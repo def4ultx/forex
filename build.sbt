@@ -69,5 +69,10 @@ libraryDependencies ++= Seq(
   Libraries.catsScalaCheck   % Test
 )
 
-enablePlugins(DockerPlugin)
+enablePlugins(JavaAppPackaging, DockerPlugin)
+lazy val root = (project in file("."))
+  .settings(
+    dockerBaseImage := "openjdk:8-jdk",
+    dockerExposedPorts ++= Seq (8888)
+  )
 
